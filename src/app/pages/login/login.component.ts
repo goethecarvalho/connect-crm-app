@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 import { LoginService } from 'src/app/services/login.service';
 
 @Component({
@@ -14,7 +15,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
-    private loginService: LoginService
+    private loginService: LoginService,
+    public authService: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -38,13 +40,13 @@ export class LoginComponent implements OnInit {
 
     this.loginService.login(login, senha).subscribe(
       token => {
-        alert(token);
-        this.router.navigate(['/entidade']);
+        //this.authService.setToken(token);
+        //this.authService.UsuarioAutenticado(true);
+        this.router.navigate(['/dashboard']);
       },
       err => {
-        console.log('err:', err);
-        alert('corrigir esse depois');
-        this.router.navigate(['/entidade']);
+        alert('Ocorreu um erro');
+        this.router.navigate(['/dashboard']);
       }
     );
   }
