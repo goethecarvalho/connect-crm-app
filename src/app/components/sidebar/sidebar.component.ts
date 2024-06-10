@@ -21,7 +21,7 @@ export class SidebarComponent {
         break;
 
       case 2:
-        this.router.navigate(['/sistema']);
+        this.router.navigate(['/entidade']);
         break;
 
       case 3:
@@ -35,7 +35,7 @@ export class SidebarComponent {
       default:
         break;
     }
-    
+
     this.menuService.menuSelecionado = menu;
 
   }
