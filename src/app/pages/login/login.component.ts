@@ -39,12 +39,12 @@ export class LoginComponent implements OnInit {
     this.loginService.login(login, senha).subscribe(
       token => {
         alert(token);
-        this.router.navigate(['/dashboard']);
+        this.router.navigate(['/sistema']);
       },
       err => {
         console.log('err:', err);
         alert('corrigir esse depois');
-        this.router.navigate(['/dashboard']);
+        this.router.navigate(['/sistema']);
       }
     );
   }
