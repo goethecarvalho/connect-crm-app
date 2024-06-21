@@ -1,0 +1,96 @@
+<navbar></navbar>
+<sidebar></sidebar>
+
+<div class="container-base">
+
+    <div class="content-page">
+        <div class="card-header">
+            <div class="card-title">
+                Cadastro de Movimentações
+            </div>
+        </div>
+
+        <form class="form-page" [formGroup]="movimentacaoForm" (submit)="enviar()">
+            <div class="row">
+                <div class="group-row">
+                    <label>Descrição</label>
+                    <input type="text" name="name" id="name" placeholder="Descrição" formControlName="name" required />
+                    <label class="error-input" *ngIf="movimentacaoForm.get('name')?.errors?.['required'] &&
+                    movimentacaoForm.get('name')?.touched">
+                        Campo Obrigatório!
+                    </label>
+                </div>
+            </div>
+
+            <div class="row">
+              <div class="group-row">
+                  <label>Entidades</label>
+                 <!--<ng-select class="select-padrao"  formControlName="entidadeSelect" [(ngModel)]="entidadeSelect" [items]="listEntidades"  bindLabel="name"  [multiple]="false" [clearable]="false" [searchable]="false"></ng-select>-->
+                 <select formControlName="entidade">
+                  <option value="" disabled selected>Selecione a Entidade</option>
+                  <option *ngFor="let entidade of entidades" [value]="entidade">{{ entidade }}</option>
+                 </select>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="group-row">
+                  <label>Data da Movimentação</label>
+                  <input type="date" name="data" id="data" placeholder="Data" formControlName="data" required />
+                  <label class="error-input" *ngIf="movimentacaoForm.get('data')?.errors?.['required'] &&
+                  movimentacaoForm.get('data')?.touched">
+                      Campo Obrigatório!
+                  </label>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="group-row">
+                  <label>Tipo Proposta</label>
+                  <select formControlName="tipo">
+                      <option value="" disabled selected>Selecione o tipo</option>
+                      <option *ngFor="let tipo of tipos" [value]="tipo">{{ tipo }}</option>
+                  </select>
+                  <label class="error-input" *ngIf="movimentacaoForm.get('tipo')?.errors?.['required'] &&
+                    movimentacaoForm.get('tipo')?.touched">
+                      Campo Obrigatório!
+                  </label>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="group-row">
+                  <label>Projeto</label>
+                  <select formControlName="projeto">
+                      <option value="" disabled selected>Selecione o Projeto</option>
+                      <option *ngFor="let projeto of projetos" [value]="projeto">{{ projeto }}</option>
+                  </select>
+                  <label class="error-input" *ngIf="movimentacaoForm.get('tipo')?.errors?.['required'] &&
+                    movimentacaoForm.get('tipo')?.touched">
+                      Campo Obrigatório!
+                  </label>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="group-row">
+                  <label>Valor</label>
+                  <input type="number" name="valor" id="valor" placeholder="Valor" formControlName="valor" required />
+                  <label class="error-input" *ngIf="movimentacaoForm.get('valor')?.errors?.['required'] &&
+                    movimentacaoForm.get('valor')?.touched">
+                      Campo Obrigatório!
+                  </label>
+              </div>
+          </div>
+
+            <div class="row">
+                <div class="group-row">
+                    <input type="submit" value="Salvar" class="btn-primary" />
+                </div>
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
