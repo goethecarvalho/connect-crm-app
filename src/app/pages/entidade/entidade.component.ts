@@ -9,7 +9,7 @@ import { MenuService } from 'src/app/services/menu.service';
 })
 export class EntidadeComponent {
 
-  tipos: string[] = ['CLIENTE', 'FORNECEDOR', 'PRESTADOR'];
+  tipos: string[] = ['PROPRIETARIO','FORNECEDOR','PRESTADOR','SERVICO','CLIENTE'];
   constructor(public menuService: MenuService, public formBuilder: FormBuilder) {
   }
 
@@ -22,7 +22,8 @@ export class EntidadeComponent {
     this.entidadeForm = this.formBuilder.group
       (
         {
-          name: ['', [Validators.required]]
+          nome: ['', [Validators.required]],
+          tipo: ['', [Validators.required]]
         }
       )
   }
