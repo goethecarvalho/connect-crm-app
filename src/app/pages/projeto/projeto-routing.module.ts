@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CategoriaComponent } from './categoria.component';
+import { ProjetoComponent } from './projeto.component';
 
 const routes: Routes = [{
     path: '',
-    component: CategoriaComponent,
+    component: ProjetoComponent,
   }];
 
   @NgModule({
@@ -12,4 +12,4 @@ const routes: Routes = [{
     exports: [RouterModule]
   })
 
-  export class CategoriaRoutingModule{}
+  export class ProjetoRoutingModule{}
