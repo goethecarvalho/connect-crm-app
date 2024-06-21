@@ -22,7 +22,7 @@
         <div class="container-icone-menu">
             <div class="caixa-menu caixa-menu-texto" (click)="selectMenu(3)"
                 [ngClass]="{'caixa-menu-select': this.menuService.menuSelecionado == 3, '':this.menuService.menuSelecionado!= 3}">
-                Categoria
+                Projeto
             </div>
         </div>
     </div>
@@ -31,9 +31,18 @@
         <div class="container-icone-menu">
             <div class="caixa-menu caixa-menu-texto" (click)="selectMenu(4)"
                 [ngClass]="{'caixa-menu-select': this.menuService.menuSelecionado == 4, '':this.menuService.menuSelecionado!= 4}">
-                Despesa
+                Receita
             </div>
         </div>
+    </div>
+
+    <div class="grupo-menu">
+      <div class="container-icone-menu">
+          <div class="caixa-menu caixa-menu-texto" (click)="selectMenu(5)"
+              [ngClass]="{'caixa-menu-select': this.menuService.menuSelecionado == 5, '':this.menuService.menuSelecionado!= 5}">
+              Movimentação
+          </div>
+      </div>
     </div>
 
 </div>

@@ -25,11 +25,15 @@ export class SidebarComponent {
         break;
 
       case 3:
-        this.router.navigate(['/categoria']);
+        this.router.navigate(['/projeto']);
         break;
 
       case 4:
-        this.router.navigate(['/despesa']);
+        this.router.navigate(['/receita']);
+        break;
+
+      case 5:
+        this.router.navigate(['/movimentacao']);
         break;
 
       default:

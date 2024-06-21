@@ -27,14 +27,20 @@ const routes: Routes = [
   }
   ,
   {
-    path: 'categoria',
-    loadChildren: () => import('./pages/categoria/categoria.module').then(m => m.CategoriaModule),
+    path: 'projeto',
+    loadChildren: () => import('./pages/projeto/projeto.module').then(m => m.ProjetoModule),
     //canActivate:[AuthGuard]
   }
   ,
   {
-    path: 'despesa',
-    loadChildren: () => import('./pages/despesa/despesa.module').then(m => m.DespesaModule),
+    path: 'receita',
+    loadChildren: () => import('./pages/receita/receita.module').then(m => m.ReceitaModule),
+    //canActivate:[AuthGuard]
+  }
+  ,
+  {
+    path: 'movimentacao',
+    loadChildren: () => import('./pages/movimentacao/movimentacao.module').then(m => m.MovimentacaoModule),
     //canActivate:[AuthGuard]
   }
 ];
