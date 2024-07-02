@@ -37,7 +37,7 @@ export class EntidadeComponent {
     debugger
     var dados = this.dadorForm();
 
-    alert(dados["name"].value)
+    alert(dados["nome"].value)
   }
 
 
