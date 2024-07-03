@@ -49,24 +49,23 @@
 
             <div class="row">
               <div class="group-row">
-                  <label>Data da Movimentação</label>
-                  <input type="date" name="data" id="data" placeholder="Data" formControlName="data" required />
-                  <label class="error-input" *ngIf="movimentacaoForm.get('data')?.errors?.['required'] &&
-                  movimentacaoForm.get('data')?.touched">
-                      Campo Obrigatório!
-                  </label>
+                  <label>Projetos</label>
+                  <select class="select-padrao"
+                          [(ngModel)]="projetoSelect"
+                          formControlName="projetoSelect">
+                      <option *ngFor="let projeto of listaProjetos" [value]="projeto.id">
+                          {{ projeto.name }}
+                      </option>
+                  </select>
               </div>
             </div>
 
             <div class="row">
               <div class="group-row">
-                  <label>Projeto</label>
-                  <select formControlName="projeto">
-                      <option value="" disabled selected>Selecione o Projeto</option>
-                      <option *ngFor="let projeto of projetos" [value]="projeto">{{ projeto }}</option>
-                  </select>
-                  <label class="error-input" *ngIf="movimentacaoForm.get('tipo')?.errors?.['required'] &&
-                    movimentacaoForm.get('tipo')?.touched">
+                  <label>Data da Movimentação</label>
+                  <input type="date" name="data" id="data" placeholder="Data" formControlName="data" required />
+                  <label class="error-input" *ngIf="movimentacaoForm.get('data')?.errors?.['required'] &&
+                  movimentacaoForm.get('data')?.touched">
                       Campo Obrigatório!
                   </label>
               </div>

@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SelectModel } from 'src/app/models/SelectModel';
 import { EntidadeService } from 'src/app/services/entidade.service';
 import { MenuService } from 'src/app/services/menu.service';
+import { ProjetoService } from 'src/app/services/projeto.service';
 
 @Component({
   selector: 'app-movimentacao',
@@ -11,16 +12,14 @@ import { MenuService } from 'src/app/services/menu.service';
 })
 export class MovimentacaoComponent {
 
-  projetos: string[] = ['PROJETO MICRO GERAÇÃO (ATÉ 275 kW)'];
   tipos: string[] = ['DEBITO','CREDITO'];
-  constructor(public menuService: MenuService, public formBuilder: FormBuilder, public entidadeService : EntidadeService) {
+  constructor(public menuService: MenuService, public formBuilder: FormBuilder, public entidadeService : EntidadeService, public projetoService : ProjetoService) {
   }
 
   listaEntidades = new Array<SelectModel>();
   entidadeSelect = new SelectModel();
 
-
-  listProjetos = new Array<SelectModel>();
+  listaProjetos = new Array<SelectModel>();
   projetoSelect = new SelectModel();
 
   movimentacaoForm: FormGroup;
@@ -42,6 +41,7 @@ export class MovimentacaoComponent {
       )
 
       this.ListaEntidades();
+      this.ListaProjetos();
   }
 
 
@@ -78,6 +78,31 @@ export class MovimentacaoComponent {
             this.listaEntidades = listEntidades;
         }, (error) => {
             console.error('Erro ao listar entidades', error);
+        });
+  }
+
+  ListaProjetos() {
+    this.projetoService.Listar()
+        .subscribe((response) => {
+            const projetos = response.content;
+            console.log('Projetos recebidos:', projetos); // Adicione este log
+            var listProjetos = [];
+
+            projetos.forEach(x => {
+                if (x && x.id !== undefined && x.descricao !== undefined) { // Verifique se id e nome existem
+                    var item = new SelectModel();
+                    item.id = x.id.toString();
+                    item.name = x.descricao;
+
+                    listProjetos.push(item);
+                } else {
+                    console.error('Projeto inválido', x); // Log entidades inválidas
+                }
+            });
+
+            this.listaProjetos = listProjetos;
+        }, (error) => {
+            console.error('Erro ao listar projetos', error);
         });
   }
 
