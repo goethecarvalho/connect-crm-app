@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SelectModel } from 'src/app/models/SelectModel';
+import { EntidadeService } from 'src/app/services/entidade.service';
 import { MenuService } from 'src/app/services/menu.service';
 
 @Component({
@@ -10,13 +11,12 @@ import { MenuService } from 'src/app/services/menu.service';
 })
 export class MovimentacaoComponent {
 
-  entidades: string[] = ['GEPE - GRUPO ESPÍRITA PAULO E ESTEVÃO - AGUA FRIA'];
   projetos: string[] = ['PROJETO MICRO GERAÇÃO (ATÉ 275 kW)'];
   tipos: string[] = ['DEBITO','CREDITO'];
-  constructor(public menuService: MenuService, public formBuilder: FormBuilder) {
+  constructor(public menuService: MenuService, public formBuilder: FormBuilder, public entidadeService : EntidadeService) {
   }
 
-  listEntidades = new Array<SelectModel>();
+  listaEntidades = new Array<SelectModel>();
   entidadeSelect = new SelectModel();
 
 
@@ -34,7 +34,6 @@ export class MovimentacaoComponent {
           name: ['', [Validators.required]],
           tipo: ['', [Validators.required]],
           projeto: ['', [Validators.required]],
-          entidade: ['', [Validators.required]],
           valor: ['', [Validators.required]],
           data: ['', [Validators.required]],
           entidadeSelect: ['', [Validators.required]],
@@ -55,6 +54,42 @@ export class MovimentacaoComponent {
     alert(dados["name"].value)
   }
 
+  ListaEntidades() {
+    this.entidadeService.Listar()
+        .subscribe((response) => {
+            const entidades = response.content;
+            console.log('Entidades recebidas:', entidades); // Adicione este log
+            var listEntidades = [];
+
+            entidades.forEach(x => {
+                if (x && x.id !== undefined && x.nome !== undefined) { // Verifique se id e nome existem
+                    var item = new SelectModel();
+                    item.id = x.id.toString();
+                    item.name = x.nome;
+
+                    listEntidades.push(item);
+                } else {
+                    console.error('Entidade inválida', x); // Log entidades inválidas
+                }
+            });
+
+            this.listaEntidades = listEntidades;
+        }, (error) => {
+            console.error('Erro ao listar entidades', error);
+        });
+  }
+
+  atualizarTipoLabel() {
+    const tipoSelecionado = this.movimentacaoForm.get('tipo')?.value;
+    switch (tipoSelecionado) {
+      case 'DEBITO':
+        return 'Destino';
+      case 'CREDITO':
+        return 'Origem';
+      default:
+        return '';
+    }
+  }
 
 
 }

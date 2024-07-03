@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SelectModel } from 'src/app/models/SelectModel';
+import { EntidadeService } from 'src/app/services/entidade.service';
 import { MenuService } from 'src/app/services/menu.service';
 
 @Component({
@@ -10,13 +11,12 @@ import { MenuService } from 'src/app/services/menu.service';
 })
 export class ReceitaComponent {
 
-  entidades: string[] = ['GEPE - GRUPO ESPÍRITA PAULO E ESTEVÃO - AGUA FRIA'];
   tipos: string[] = ['RESIDENCIAL','COMERCIAL'];
   status: string[] = ['ABERTA','ANDAMENTO','CANCELADA','FECHADA'];
-  constructor(public menuService: MenuService, public formBuilder: FormBuilder) {
+  constructor(public menuService: MenuService, public formBuilder: FormBuilder, public entidadeService : EntidadeService) {
   }
 
-  listEntidades = new Array<SelectModel>();
+  listaEntidades = new Array<SelectModel>();
   entidadeSelect = new SelectModel();
 
 
@@ -38,6 +38,8 @@ export class ReceitaComponent {
           projetosSelect: ['', [Validators.required]]
         }
       )
+
+      this.ListaEntidades();
   }
 
 
@@ -52,6 +54,30 @@ export class ReceitaComponent {
     alert(dados["name"].value)
   }
 
+  ListaEntidades() {
+    this.entidadeService.Listar()
+        .subscribe((response) => {
+            const entidades = response.content;
+            console.log('Entidades recebidas:', entidades); // Adicione este log
+            var listEntidades = [];
+
+            entidades.forEach(x => {
+                if (x && x.id !== undefined && x.nome !== undefined) { // Verifique se id e nome existem
+                    var item = new SelectModel();
+                    item.id = x.id.toString();
+                    item.name = x.nome;
+
+                    listEntidades.push(item);
+                } else {
+                    console.error('Entidade inválida', x); // Log entidades inválidas
+                }
+            });
+
+            this.listaEntidades = listEntidades;
+        }, (error) => {
+            console.error('Erro ao listar entidades', error);
+        });
+  }
 
 
 }

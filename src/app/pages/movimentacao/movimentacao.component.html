@@ -12,24 +12,38 @@
 
         <form class="form-page" [formGroup]="movimentacaoForm" (submit)="enviar()">
             <div class="row">
-                <div class="group-row">
-                    <label>Descrição</label>
-                    <input type="text" name="name" id="name" placeholder="Descrição" formControlName="name" required />
-                    <label class="error-input" *ngIf="movimentacaoForm.get('name')?.errors?.['required'] &&
-                    movimentacaoForm.get('name')?.touched">
-                        Campo Obrigatório!
-                    </label>
-                </div>
+              <div class="group-row">
+                  <label>Descrição</label>
+                  <input type="text" name="name" id="name" placeholder="Descrição" formControlName="name" required />
+                  <label class="error-input" *ngIf="movimentacaoForm.get('name')?.errors?.['required'] && movimentacaoForm.get('name')?.touched">
+                      Campo Obrigatório!
+                  </label>
+              </div>
             </div>
 
             <div class="row">
               <div class="group-row">
-                  <label>Entidades</label>
-                 <!--<ng-select class="select-padrao"  formControlName="entidadeSelect" [(ngModel)]="entidadeSelect" [items]="listEntidades"  bindLabel="name"  [multiple]="false" [clearable]="false" [searchable]="false"></ng-select>-->
-                 <select formControlName="entidade">
-                  <option value="" disabled selected>Selecione a Entidade</option>
-                  <option *ngFor="let entidade of entidades" [value]="entidade">{{ entidade }}</option>
-                 </select>
+                  <label>Tipo Movimentação</label>
+                  <select formControlName="tipo" (change)="atualizarTipoLabel()">
+                      <option value="" disabled selected>Selecione o tipo</option>
+                      <option *ngFor="let tipo of tipos" [value]="tipo">{{ tipo }}</option>
+                  </select>
+                  <label class="error-input" *ngIf="movimentacaoForm.get('tipo')?.errors?.['required'] && movimentacaoForm.get('tipo')?.touched">
+                      Campo Obrigatório!
+                  </label>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="group-row">
+                  <label>{{ atualizarTipoLabel() }}</label>
+                  <select class="select-padrao"
+                          [(ngModel)]="entidadeSelect"
+                          formControlName="entidadeSelect">
+                      <option *ngFor="let entidade of listaEntidades" [value]="entidade.id">
+                          {{ entidade.name }}
+                      </option>
+                  </select>
               </div>
             </div>
 
@@ -39,20 +53,6 @@
                   <input type="date" name="data" id="data" placeholder="Data" formControlName="data" required />
                   <label class="error-input" *ngIf="movimentacaoForm.get('data')?.errors?.['required'] &&
                   movimentacaoForm.get('data')?.touched">
-                      Campo Obrigatório!
-                  </label>
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="group-row">
-                  <label>Tipo Movimentação</label>
-                  <select formControlName="tipo">
-                      <option value="" disabled selected>Selecione o tipo</option>
-                      <option *ngFor="let tipo of tipos" [value]="tipo">{{ tipo }}</option>
-                  </select>
-                  <label class="error-input" *ngIf="movimentacaoForm.get('tipo')?.errors?.['required'] &&
-                    movimentacaoForm.get('tipo')?.touched">
                       Campo Obrigatório!
                   </label>
               </div>

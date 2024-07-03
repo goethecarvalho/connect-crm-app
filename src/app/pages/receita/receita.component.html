@@ -28,12 +28,14 @@
 
             <div class="row">
               <div class="group-row">
-                  <label>Entidades</label>
-                 <!--<ng-select class="select-padrao"  formControlName="entidadeSelect" [(ngModel)]="entidadeSelect" [items]="listEntidades"  bindLabel="name"  [multiple]="false" [clearable]="false" [searchable]="false"></ng-select>-->
-                 <select formControlName="tipo">
-                  <option value="" disabled selected>Selecione a Entidade</option>
-                  <option *ngFor="let entidade of entidades" [value]="entidade">{{ entidade }}</option>
-                 </select>
+                  <label>Clientes</label>
+                  <select class="select-padrao"
+                          [(ngModel)]="entidadeSelect"
+                          formControlName="entidadeSelect">
+                      <option *ngFor="let entidade of listaEntidades" [value]="entidade.id">
+                          {{ entidade.name }}
+                      </option>
+                  </select>
               </div>
             </div>
 
