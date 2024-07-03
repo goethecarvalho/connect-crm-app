@@ -1,7 +1,7 @@
 export class Entidade
 {
-    Id: number;
-    Nome: string;
+    id: number;
+    nome: string;
     TipoEntidade: number;
 
 }

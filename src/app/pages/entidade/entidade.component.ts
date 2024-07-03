@@ -44,8 +44,9 @@ export class EntidadeComponent {
     var dados = this.dadorForm();
 
     let item = new Entidade();
-    item.Nome = dados["nome"].value;
-    item.Id =0;
+    item.nome = dados["nome"].value;
+    item.TipoEntidade = dados["tipo"].value;
+
 
     this.entidadeService.Cadastrar(item)
     .subscribe((response: Entidade) => {
