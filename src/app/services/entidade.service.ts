@@ -40,9 +40,4 @@ export class EntidadeService {
       return this.httpClient.get<PaginatedResponse<Entidade>>(`${this.baseURL}/entidades/listar`);
     }
 
-    /*Listar()
-    {
-        return this.httpClient.get(`${this.baseURL}/entidades/listar`);
-    }*/
-
 }

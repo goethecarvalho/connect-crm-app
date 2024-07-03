@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Entidade } from 'src/app/models/Entidade';
 import { SelectModel } from 'src/app/models/SelectModel';
 import { EntidadeService } from 'src/app/services/entidade.service';
 import { MenuService } from 'src/app/services/menu.service';
@@ -12,7 +11,6 @@ import { MenuService } from 'src/app/services/menu.service';
 })
 export class ProjetoComponent {
 
-  entidades: string[] = ['GEPE - GRUPO ESPÍRITA PAULO E ESTEVÃO - AGUA FRIA'];
   tipos: string[] = ['RESIDENCIAL','COMERCIAL'];
   status: string[] = ['ABERTO','ANDAMENTO','CANCELADO','FECHADO'];
 
@@ -34,7 +32,6 @@ export class ProjetoComponent {
           descricao: ['', [Validators.required]],
           tipo: ['', [Validators.required]],
           entidadeSelect: ['', [Validators.required]],
-          entidade: ['', [Validators.required]],
           data: ['', [Validators.required]],
           valor: ['', [Validators.required]]
         }
