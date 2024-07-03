@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Projeto } from 'src/app/models/Projeto';
 import { SelectModel } from 'src/app/models/SelectModel';
 import { EntidadeService } from 'src/app/services/entidade.service';
 import { MenuService } from 'src/app/services/menu.service';
+import { ProjetoService } from 'src/app/services/projeto.service';
 
 @Component({
   selector: 'app-projeto',
@@ -14,7 +16,7 @@ export class ProjetoComponent {
   tipos: string[] = ['RESIDENCIAL','COMERCIAL'];
   status: string[] = ['ABERTO','ANDAMENTO','CANCELADO','FECHADO'];
 
-  constructor(public menuService: MenuService, public formBuilder: FormBuilder, public entidadeService : EntidadeService) {
+  constructor(public menuService: MenuService, public formBuilder: FormBuilder, public projetoService : ProjetoService, public entidadeService : EntidadeService) {
   }
 
   listaEntidades = new Array<SelectModel>();
@@ -31,6 +33,7 @@ export class ProjetoComponent {
           numero: ['', [Validators.required]],
           descricao: ['', [Validators.required]],
           tipo: ['', [Validators.required]],
+          status: ['', [Validators.required]],
           entidadeSelect: ['', [Validators.required]],
           data: ['', [Validators.required]],
           valor: ['', [Validators.required]]
@@ -49,8 +52,32 @@ export class ProjetoComponent {
     debugger
     var dados = this.dadorForm();
 
-    alert(dados["name"].value)
+    let item = new Projeto();
+    item.numero = dados["numero"].value;
+    item.descricao = dados["descricao"].value;
+    item.data = dados["data"].value;
+    item.valor = dados["valor"].value;
+    item.TipoProjeto = dados["tipo"].value;
+    item.StatusProjeto = dados["status"].value;
+    item.Entidade = dados["entidadeSelect"].value;
+
+
+    this.projetoService.Cadastrar(item)
+    .subscribe((response: Projeto) => {
+
+      this.projetoForm.reset();
+
+    }, (error) => console.error(error),
+      () => { })
+
   }
+
+  /*enviar() {
+    debugger
+    var dados = this.dadorForm();
+
+    alert(dados["descricao"].value)
+  }*/
 
   ListaEntidades() {
     this.entidadeService.Listar()

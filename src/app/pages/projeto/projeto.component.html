@@ -37,7 +37,7 @@
 
             <div class="row">
               <div class="group-row">
-                  <label>Tipo Proposta</label>
+                  <label>Tipo</label>
                   <select formControlName="tipo">
                       <option value="" disabled selected>Selecione o Tipo</option>
                       <option *ngFor="let tipo of tipos" [value]="tipo">{{ tipo }}</option>
@@ -64,8 +64,8 @@
 
             <div class="row">
               <div class="group-row">
-                  <label>Status Proposta</label>
-                  <select formControlName="tipo">
+                  <label>Status</label>
+                  <select formControlName="status">
                       <option value="" disabled selected>Selecione o Status</option>
                       <option *ngFor="let status of status" [value]="status">{{ status }}</option>
                   </select>
