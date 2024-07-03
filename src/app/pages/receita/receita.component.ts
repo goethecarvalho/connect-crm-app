@@ -11,8 +11,7 @@ import { MenuService } from 'src/app/services/menu.service';
 })
 export class ReceitaComponent {
 
-  tipos: string[] = ['RESIDENCIAL','COMERCIAL'];
-  status: string[] = ['ABERTA','ANDAMENTO','CANCELADA','FECHADA'];
+  tipos: string[] = ['INVESTIMENTO','PROJETO'];
   constructor(public menuService: MenuService, public formBuilder: FormBuilder, public entidadeService : EntidadeService) {
   }
 

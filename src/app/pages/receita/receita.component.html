@@ -14,7 +14,7 @@
 
             <div class="row">
               <div class="group-row">
-                  <label>Tipo Proposta</label>
+                  <label>Tipo Receita</label>
                   <select formControlName="tipo">
                       <option value="" disabled selected>Selecione o tipo</option>
                       <option *ngFor="let tipo of tipos" [value]="tipo">{{ tipo }}</option>
@@ -28,7 +28,7 @@
 
             <div class="row">
               <div class="group-row">
-                  <label>Clientes</label>
+                  <label>Origem</label>
                   <select class="select-padrao"
                           [(ngModel)]="entidadeSelect"
                           formControlName="entidadeSelect">
