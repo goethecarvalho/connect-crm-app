@@ -40,6 +40,8 @@ export class MovimentacaoComponent {
           projetoSelect: ['', [Validators.required]],
         }
       )
+
+      this.ListaEntidades();
   }
 
 
