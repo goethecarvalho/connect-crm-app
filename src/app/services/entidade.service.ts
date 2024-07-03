@@ -17,14 +17,13 @@ export class EntidadeService {
 
     Cadastrar(entidade:Entidade)
     {
-        return this.httpClient.post<Entidade>(`${this.baseURL}/cadastrar`,
+        return this.httpClient.post<Entidade>(`${this.baseURL}/entidades/cadastrar`,
         entidade)
     }
 
-    Listar(emailUsuario:string)
+    Listar()
     {
-        return this.httpClient.get(`${this.baseURL}/ListarCategoriasUsuario?emailUsuario=${emailUsuario}`);
+        return this.httpClient.get(`${this.baseURL}/entidades/listar`);
     }
-
 
 }
