@@ -72,15 +72,8 @@ export class ProjetoComponent {
 
   }
 
-  /*enviar() {
-    debugger
-    var dados = this.dadorForm();
-
-    alert(dados["descricao"].value)
-  }*/
-
   ListaEntidades() {
-    this.entidadeService.Listar()
+    this.entidadeService.ListarClientes()
         .subscribe((response) => {
             const entidades = response.content;
             console.log('Entidades recebidas:', entidades); // Adicione este log

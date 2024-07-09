@@ -40,4 +40,12 @@ export class EntidadeService {
       return this.httpClient.get<PaginatedResponse<Entidade>>(`${this.baseURL}/entidades/listar`);
     }
 
+    ListarClientes(): Observable<PaginatedResponse<Entidade>> {
+      return this.httpClient.get<PaginatedResponse<Entidade>>(`${this.baseURL}/entidades/listarClientes`);
+    }
+
+    ListarEntidadesReceita(): Observable<PaginatedResponse<Entidade>> {
+      return this.httpClient.get<PaginatedResponse<Entidade>>(`${this.baseURL}/entidades/listarEntidadesReceita`);
+    }
+
 }

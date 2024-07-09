@@ -54,7 +54,7 @@ export class ReceitaComponent {
   }
 
   ListaEntidades() {
-    this.entidadeService.Listar()
+    this.entidadeService.ListarEntidadesReceita()
         .subscribe((response) => {
             const entidades = response.content;
             console.log('Entidades recebidas:', entidades); // Adicione este log
