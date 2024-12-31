@@ -1,0 +1,74 @@
+<navbar></navbar>
+<sidebar></sidebar>
+
+<div class="container-base">
+
+    <div class="content-page">
+        <div class="card-header">
+            <div class="card-title">
+                Cadastro de Receitas
+            </div>
+        </div>
+
+        <form class="form-page" [formGroup]="receitaForm" (submit)="enviar()">
+
+            <div class="row">
+              <div class="group-row">
+                  <label>Tipo Receita</label>
+                  <select formControlName="tipo">
+                      <option value="" disabled selected>Selecione o tipo</option>
+                      <option *ngFor="let tipo of tipos" [value]="tipo">{{ tipo }}</option>
+                  </select>
+                  <label class="error-input" *ngIf="receitaForm.get('tipo')?.errors?.['required'] &&
+                    receitaForm.get('tipo')?.touched">
+                      Campo Obrigatório!
+                  </label>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="group-row">
+                  <label>Origem</label>
+                  <select class="select-padrao"
+                          [(ngModel)]="entidadeSelect"
+                          formControlName="entidadeSelect">
+                      <option *ngFor="let entidade of listaEntidades" [value]="entidade.id">
+                          {{ entidade.name }}
+                      </option>
+                  </select>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="group-row">
+                  <label>Data</label>
+                  <input type="date" name="data" id="data" placeholder="Data" formControlName="data" required />
+                  <label class="error-input" *ngIf="receitaForm.get('data')?.errors?.['required'] &&
+                  receitaForm.get('data')?.touched">
+                      Campo Obrigatório!
+                  </label>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="group-row">
+                  <label>Valor</label>
+                  <input type="number" name="valor" id="valor" placeholder="Valor" formControlName="valor" required />
+                  <label class="error-input" *ngIf="receitaForm.get('valor')?.errors?.['required'] &&
+                    receitaForm.get('valor')?.touched">
+                      Campo Obrigatório!
+                  </label>
+              </div>
+            </div>
+
+            <div class="row">
+                <div class="group-row">
+                    <input type="submit" value="Salvar" class="btn-primary" />
+                </div>
+            </div>
+
+        </form>
+
+    </div>
+
+</div>

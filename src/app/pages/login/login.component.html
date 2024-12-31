@@ -1,0 +1,54 @@
+<div class="container-login">
+
+    <div class="container-login-central">
+
+        <div class="container-header">
+            <div class="titulo-login">
+                Connect - Gestão Financeira
+            </div>
+            <div class="info-login">
+                Digite seu login e senha para logar!
+            </div>
+        </div>
+
+        <div class="container-form">
+            <form class="form-inputs" [formGroup]="loginForm" (submit)="loginUser()">
+                <div class="group-input">
+                    <div class="text-info">
+                        Login
+                    </div>
+                    <input class="input-form" type="text" name="login" id="login" placeholder="Login"
+                        formControlName="login" required="">
+
+                    <label *ngIf="loginForm.get('login')?.errors?.['required'] &&  loginForm.get('login')?.touched"
+                        class="error-input">
+                        Campo Obrigatório!
+                    </label>
+                </div>
+
+                <div class="group-input">
+                    <div class="text-info">
+                        Senha
+                    </div>
+                    <input class="input-form" type="password" name="senha" id="senha" placeholder="Senha"
+                        formControlName="senha" required="">
+
+                    <label *ngIf="loginForm.get('senha')?.errors?.['required'] &&  loginForm.get('senha')?.touched"
+                        class="error-input">
+                        Campo Obrigatório!
+                    </label>
+                </div>
+
+                <div class="group-input">
+                    <input type="submit" class="btn-login" value="Login" [ngClass]="{'disabled' : !loginForm.valid}"
+                        [disabled]="!loginForm.valid">
+
+                </div>
+
+            </form>
+        </div>
+
+
+    </div>
+
+</div>

@@ -1,0 +1,51 @@
+<navbar></navbar>
+<sidebar></sidebar>
+
+
+<div class="container-base">
+
+    <div class="content-page">
+        <div class="card-header">
+            <div class="card-title">
+                Cadastro de Entidades
+            </div>
+        </div>
+
+        <form class="form-page" [formGroup]="entidadeForm" (submit)="enviar()">
+
+            <div class="row">
+                <div class="group-row">
+                    <label>Nome</label>
+                    <input type="text" name="nome" id="nome" placeholder="Nome" formControlName="nome" required />
+                    <label class="error-input" *ngIf="entidadeForm.get('nome')?.errors?.['required'] &&
+                    entidadeForm.get('nome')?.touched">
+                        Campo Obrigatório!
+                    </label>
+                </div>
+            </div>
+
+            <div class="row">
+              <div class="group-row">
+                  <label>Tipo de Entidade</label>
+                  <select formControlName="tipo">
+                      <option value="" disabled selected>Selecione o tipo</option>
+                      <option *ngFor="let tipo of tipos" [value]="tipo">{{ tipo }}</option>
+                  </select>
+                  <label class="error-input" *ngIf="entidadeForm.get('tipo')?.errors?.['required'] &&
+                  entidadeForm.get('tipo')?.touched">
+                      Campo Obrigatório!
+                  </label>
+              </div>
+          </div>
+
+            <div class="row">
+                <div class="group-row">
+                    <input type="submit" value="Salvar" class="btn-primary" />
+                </div>
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
